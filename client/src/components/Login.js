@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from 'react-router-dom'
 import axios from 'axios'
 
@@ -9,8 +9,8 @@ const Login = () => {
   const history = useHistory()
 
   const initialValues = {
-    username: '',
-    password: ''
+    username: 'Lambda School',
+    password: 'i<3Lambd4'
   }
 
   const [credentials, setCredentials] = useState(initialValues)
@@ -22,12 +22,16 @@ const Login = () => {
     })
   }
 
+  useEffect(()=> {
+    console.log(credentials)
+  },[credentials])
+
   const login = (e) => {
     e.preventDefault()
     axios.post("http://localhost:5000/api/login", credentials)
     .then(res => {
       localStorage.setItem("token", res.data.payload);
-      history.push('/colors')
+      history.push('/')
     })
   }
 
@@ -46,7 +50,7 @@ const Login = () => {
         <label htmlFor='password'>Password</label>
         <input
           id='password'
-          type='text'
+          type='password'
           name='password'
           value={credentials.password}
           onChange={handleChange}
