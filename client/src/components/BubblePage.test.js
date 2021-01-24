@@ -11,11 +11,11 @@ const colorList = colors
 
 test("Fetches data and renders the bubbles", async () => {
   // Finish this test
+  // const {rerender} = render(<BubblePage />)
   mockGetColors.mockResolvedValueOnce(colorList)
-  const {rerender} = render(<BubblePage />)
-
+  render(<BubblePage />)
   await waitFor( async () => {
-    screen.debug();
+    // screen.debug();
   })
 
   const colorName = screen.getByText(/aliceblue/i)
@@ -24,3 +24,12 @@ test("Fetches data and renders the bubbles", async () => {
   expect(bubblesHeading)
 
 });
+
+
+// test('get bubblePage', async () => {
+//   mockGetColors.mockResolvedValueOnce(colorList)
+//   render(<Bubbles colors={colorList} />)
+//   await waitFor( async () => {
+//     screen.debug()
+//   })
+// })
